@@ -11,15 +11,26 @@ The data entered into SearchBar will be passed up to the parent component, which
 */
 
 import {useState} from 'react';
+import {Button, StyleSheet, View} from 'react-native'
+
+// const styles = StyleSheet.create({
+//     container: {
+
+//     }
+// })
 
 const SearchBar = () => {
 
     const [searchTerm, setSearchTerm] = useState("")
 
+    const pressHandler = (e) => {
+
+    }
+
     return (
-        <>
+        <View>
             
-        </>
+        </View>
     )
 }
 
