@@ -14,9 +14,12 @@ const styles = StyleSheet.create({
 })
 
 const Display = () => {
-    <View>
-        
-    </View>
+
+    return(
+        <View>
+            
+        </View>
+    )
 }
 
 export default Display

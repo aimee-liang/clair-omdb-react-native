@@ -19,12 +19,13 @@ import {Button, StyleSheet, View} from 'react-native'
 //     }
 // })
 
-const SearchBar = () => {
+const SearchBar = (props) => {
 
     const [searchTerm, setSearchTerm] = useState("")
 
     const pressHandler = (e) => {
-
+        setSearchTerm(e.target.value)
+        // props.
     }
 
     return (
