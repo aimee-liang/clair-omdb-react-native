@@ -9,3 +9,18 @@ This component will need useState hook: initial value of movie title as an empty
 The data entered into SearchBar will be passed up to the parent component, which will handle this
 
 */
+
+import {useState} from 'react';
+
+const SearchBar = () => {
+
+    const [searchTerm, setSearchTerm] = useState("")
+
+    return (
+        <>
+            
+        </>
+    )
+}
+
+export default SearchBar
