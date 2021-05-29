@@ -14,10 +14,10 @@ import {StyleSheet, View} from 'react-native'
 // })
 
 const Display = (props) => {
-
+    /* should display Box Office Mean, Box Office Standard Deviation, and Median RT Score */
     return(
         <View>
-            
+        
         </View>
     )
 }
