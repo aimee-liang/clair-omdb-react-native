@@ -4,16 +4,16 @@ Display should be displayed underneath SearchBar
 
 */
 
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {StyleSheet, View} from 'react-native'
 
-const styles = StyleSheet.create({
-    container: {
+// const styles = StyleSheet.create({
+//     container: {
         
-    }
-})
+//     }
+// })
 
-const Display = () => {
+const Display = (props) => {
 
     return(
         <View>

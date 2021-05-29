@@ -12,9 +12,8 @@ export default function App() {
     fetchMovies()
   }, [])
 
-  /* fetch movies */
   const fetchMovies = () => {
-    fetch(/* link here */)
+    fetch('http://www.omdbapi.com/?apikey=29144b52&')
       .then(response => response.json())
       .then(data => moviesInState(data))
       .catch(errors => console.log(errors))
