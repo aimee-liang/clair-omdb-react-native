@@ -4,18 +4,33 @@ import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from './SearchBar';
 
 export default function App() {
+  // const [movieTitle, setMovieTitle] = useState("")
   const [movieInDisplay, setMovieInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
+  const [moviesInState, setMoviesInState] = useState([])
+
+  useEffect(() => {
+    fetchMovies()
+  }, [])
 
   /* fetch movies */
+  const fetchMovies = () => {
+    fetch(/* link here */)
+      .then(response => response.json())
+      .then(data => moviesInState(data))
+      .catch(errors => console.log(errors))
+  }
 
-
+  /* filter through the movies we fetched, and return the one that matches the search term AKA data, set this in state */
   const searchMovies = (data) => {
-    let movieResult =  
+    let movieResult =  moviesInState.filter((movie) => {
+      return movie["Title"] == data
+    })
+    setMovieInDisplay(movieResult)
   }
 
   return (
     <View style={styles.container}>
-      <SearchBar />
+      <SearchBar searchMovies={searchMovies}/>
       <Display />
     </View>
     // <View style={styles.container}>
