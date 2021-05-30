@@ -20,7 +20,7 @@ export default function App() {
     }
   }
 
-  /* filter through the movies we fetched, and return the one that matches the search term AKA data, set this in state */
+  /* fetch movie and return the one that matches the search term, set this in state */
   const fetchMovie = (link) => {
     fetch(`${link}`)
       .then(response => response.json())

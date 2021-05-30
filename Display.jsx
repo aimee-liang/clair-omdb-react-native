@@ -40,8 +40,12 @@ const Display = (props) => {
     return(
         <>
             <Image>{props.movieInDisplay.poster}</Image>
-            <Text style={styles.titleText}>{/* movie title goes here? */}</Text>
             <View>{/* Box Office Mean */}</View>
+
+            <View>
+                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {medianRTScore}</Text>
+            </View>
+
             <View>
                 <Text style={styles.tableText}>Median Rotten Tomatoes Score: {medianRTScore}</Text>
             </View>
