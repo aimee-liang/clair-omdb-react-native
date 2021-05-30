@@ -26,7 +26,7 @@ export default function SearchBar (props){
     }
 
     const pressHandler = () => {
-        props.searchMovies(searchTerm)
+        props.editMovieTitle(searchTerm)
     }
 
     return (
