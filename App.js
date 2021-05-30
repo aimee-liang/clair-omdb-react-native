@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SearchBar from './SearchBar';
+import Display from "./Display"
 
 export default function App() {
   // const [movieTitle, setMovieTitle] = useState("")

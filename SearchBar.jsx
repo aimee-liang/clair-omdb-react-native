@@ -10,8 +10,8 @@ The data entered into SearchBar will be passed up to the parent component, which
 
 */
 
-import {useState} from 'react';
-import {Button, Keyboard, StyleSheet, View} from 'react-native'
+import React, {useState} from 'react';
+import {Button, Keyboard, StyleSheet, View, TextInput} from 'react-native'
 
 // const styles = StyleSheet.create({
 //     container: {
@@ -19,7 +19,7 @@ import {Button, Keyboard, StyleSheet, View} from 'react-native'
 //     }
 // })
 
-const SearchBar = (props) => {
+export default function SearchBar (props){
 
     const [searchTerm, setSearchTerm] = useState("")
 
@@ -35,5 +35,3 @@ const SearchBar = (props) => {
         </View>
     )
 }
-
-export default SearchBar
