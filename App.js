@@ -7,7 +7,7 @@ import Display from "./Display"
 export default function App() {
   // const [movieTitle, setMovieTitle] = useState("")
   const [movieInDisplay, setMovieInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
-  const [moviesInState, setMoviesInState] = useState([])
+  const [moviesInState, setMoviesInState] = useState([]) /* this saves our fetched API in state to later filter from */
 
   useEffect(() => {
     fetchMovies()
@@ -22,16 +22,18 @@ export default function App() {
 
   /* filter through the movies we fetched, and return the one that matches the search term AKA data, set this in state */
   const searchMovies = (data) => {
-    let movieResult =  moviesInState.filter((movie) => {
-      return movie["Title"] == data
+    let movieResult = moviesInState.filter((movie) => {
+      if (movie["Title"] == data){
+        return movie
+      }
     })
     setMovieInDisplay(movieResult)
   }
 
   return (
     <View style={styles.container}>
-      <SearchBar searchMovies={searchMovies}/>
-      <Display />
+      <SearchBar searchMovies={searchMovies} />
+      <Display movieInDisplay={movieInDisplay} />
     </View>
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
