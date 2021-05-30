@@ -23,14 +23,17 @@ export default function SearchBar (props){
 
     const [searchTerm, setSearchTerm] = useState("")
 
-    const pressHandler = (e) => {
+    const changeHandler = (e) => {
         setSearchTerm(e.target.value)
+    }
+
+    const pressHandler = () => {
         props.searchMovies(searchTerm)
     }
 
     return (
         <View>
-            <TextInput placeholder="Search movies..." onBlur={Keyboard.dismiss} />
+            <TextInput placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={changeHandler} value={searchTerm} />
             <Button onPress={pressHandler} title="🔎"/>
         </View>
     )
