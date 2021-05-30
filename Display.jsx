@@ -12,6 +12,15 @@ const styles = StyleSheet.create({
     titleText: {
         fontSize: 18,
         fontWeight: "bold"
+    },
+    boxOfficeMeanText:{
+        fontSize: 14,
+    },
+    boxOfficeSDMText: {
+        fontSize: 14,
+    },
+    medianRTScore: {
+        fontSize: 14,
     }
 })
 
@@ -22,14 +31,20 @@ const Display = (props) => {
 
     const boxOfficeStandardDeviation 
 
-    /* iterate through the object at the Ratings Key. If the score is between 0 - 10, multiply by 10. Otherwise, if  */
-    const medianRTScore
+    /* iterate through the object at the Ratings Key, then at Value key. If the score is a fraction, multiply by 10; otherwise, get the number before the % */
+    const medianRTScore = movie["Ratings"].forEach((rating) => {
+        let sum = 0
+        if (rating["Value"].includes("/")){
+            let newRating = parseInt(rating["Value"] * 10)
+            sum += newRating
+        } else if (rating["Value"].includes("%"))
+    })
 
     return(
         <>
             <Image>{props.movieInDisplay.poster}</Image>
-            <Text style={titleText}>{/* movie title goes here? */}</Text>
-            <View></View>
+            <Text style={styles.titleText}>{/* movie title goes here? */}</Text>
+            <View>{/* Box Office Mean */}</View>
         </>
     )
 }
