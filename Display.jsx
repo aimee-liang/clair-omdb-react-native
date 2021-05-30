@@ -13,14 +13,8 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "bold"
     },
-    boxOfficeMeanText:{
-        fontSize: 14,
-    },
-    boxOfficeSDMText: {
-        fontSize: 14,
-    },
-    medianRTScore: {
-        fontSize: 14,
+    tableText: {
+        fontSize: 14
     }
 })
 
@@ -31,13 +25,16 @@ const Display = (props) => {
 
     const boxOfficeStandardDeviation 
 
-    /* iterate through the object at the Ratings Key, then at Value key. If the score is a fraction, multiply by 10; otherwise, get the number before the % */
-    const medianRTScore = movie["Ratings"].forEach((rating) => {
-        let sum = 0
-        if (rating["Value"].includes("/")){
-            let newRating = parseInt(rating["Value"] * 10)
-            sum += newRating
-        } else if (rating["Value"].includes("%"))
+    /* access the Ratings Key, then at Value key. Get the number and slice before %. Convert to num from string */
+    const medianRTScore = props.movieInDisplay["Ratings"].forEach((rating) => {
+        let result = 0
+        if (movie["Ratings"]["Source"] == "Rotten Tomatoes"){
+            let ratingToNum = parseInt(movie["Ratings"]["Value"].slice("%"))
+            result += ratingToNum
+        } else {
+            return "A Rotten Tomatoes rating for this movie was not found"
+        }
+        return result
     })
 
     return(
@@ -45,6 +42,9 @@ const Display = (props) => {
             <Image>{props.movieInDisplay.poster}</Image>
             <Text style={styles.titleText}>{/* movie title goes here? */}</Text>
             <View>{/* Box Office Mean */}</View>
+            <View>
+                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {medianRTScore}</Text>
+            </View>
         </>
     )
 }
