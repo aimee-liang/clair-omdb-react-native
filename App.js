@@ -5,12 +5,8 @@ import SearchBar from './SearchBar';
 
 export default function App() {
   const [movieInDisplay, setMovieInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
-  const [moviesInState, setMoviesInState] = useState([]) /* this saves our fetched API in state to later filter from */
+  // const [moviesInState, setMoviesInState] = useState([]) /* this saves our fetched API in state to later filter from */
   let movieLink = 'http://www.omdbapi.com/?t='
-
-  // useEffect(() => {
-  //   fetchMovies()
-  // }, [])
 
   /* function takes the title data, and checks to see if the data needs to be altered depending on whitespace */
   const editMovieTitle = (movieTitle) => {
@@ -26,13 +22,12 @@ export default function App() {
 
   /* filter through the movies we fetched, and return the one that matches the search term AKA data, set this in state */
   const fetchMovie = (link) => {
-    fetch(``)
+    // fetch('http://www.omdbapi.com/?apikey=29144b52&')
+    fetch(`${link}`)
+      .then(response => response.json())
+      .then(data => moviesInDisplay(...data)) /* data needs to be spread out depending on whether there are multiple movies user wants searched */
+      .catch(errors => console.log(errors))
   }
-  // fetch(updatedMovieLink)
-  // fetch('http://www.omdbapi.com/?apikey=29144b52&')
-    // .then(response => response.json())
-    // .then(data => moviesInState(data))
-    // .catch(errors => console.log(errors))
 
   return (
     <View style={styles.container}>
