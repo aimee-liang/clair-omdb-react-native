@@ -38,17 +38,14 @@ export default function App() {
   }
 
   return (
-    <>
-    {console.log(typeof movieInResult)}
     <View style={styles.container}>
       <SearchBar editMovieTitle={editMovieTitle} />
       {movieInResult.hasOwnProperty("Title") ? 
-        <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /*errorFetchingMovie={errorFetchingMovie} */ /> 
+        <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> 
         : 
         null}
       {/* <Display movieInDisplay={moviesInDisplay} /> */}
     </View>
-    </>
   );
 }
 

@@ -13,14 +13,10 @@ const styles = StyleSheet.create({
     },
     tableText: {
         fontSize: 14
-    },
-    // posterSize: {
-    //     width:,
-    //     height: 
-    // }
+    }
 })
 
-const Display = (props) => {
+export default function Display(props){
 
     // use reduce to iterate and find the sum of the box office for all movies user has saved & divide by length of array
     const boxOfficeMean = () => {
@@ -73,5 +69,3 @@ const Display = (props) => {
         </>
     )
 }
-
-export default Display
