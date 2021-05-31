@@ -12,8 +12,10 @@ const styles = StyleSheet.create({
         margin: "auto"
     },
     movieImage: {
-        width: 20,
-        height: 30
+        paddingTop: "5%",
+        paddingBottom: "5%",
+        width: 250,
+        height: 350
     },
     movieTitleText: {
         fontSize: 20,

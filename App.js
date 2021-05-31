@@ -16,7 +16,8 @@ export default function App() {
       // let updatedMovieLink = movieLink.concat(`${newMovieTitle}`)
       // fetchMovie(updatedMovieLink)
     // } else {
-      let updatedMovieLink = movieLink.concat(`${movieTitle}`)
+      let updatedMovieLink = movieLink + movieTitle
+      // let updatedMovieLink = movieLink.concat(`${movieTitle}`)
       fetchMovie(updatedMovieLink)
     // }
   }
@@ -33,12 +34,23 @@ export default function App() {
     setMoviesInDisplay([...movieInfo])
   }
 
+  const alertMessage = () => {
+  return Alert.alert(
+    "Error",
+    `${movieInResult["Error"]}`,
+    [
+      { text: "OK", onPress: () => console.log("OK Pressed") }
+    ],
+    { cancelable: true }
+  )}
+  ;
+
   return (
     <>
     {console.log(movieInResult)}
     <View style={styles.container}>
       <SearchBar editMovieTitle={editMovieTitle} />
-      {/* {movieInResult.hasOwnProperty("Error") ? alert(`${movieInResult["Error"]}`) : null } */}
+      {movieInResult.hasOwnProperty("Error") ? alertMessage() : null }
       {movieInResult.hasOwnProperty("Title") ? 
         <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> 
         :

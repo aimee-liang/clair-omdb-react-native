@@ -14,7 +14,7 @@ import Result from './Result'
 
 const styles = StyleSheet.create({
     searchText: {
-        fontSize: 18
+        fontSize: 20
     },
     buttonStyle: {
         marginTop: "10%"
@@ -25,10 +25,6 @@ export default function SearchBar(props){
 
     const [searchTerm, setSearchTerm] = useState("")
 
-    const localChangeHandler = (e) => {
-        setSearchTerm(e.target.value)
-    }
-
     const searchBarPressHandler = () => {
         props.editMovieTitle(searchTerm)
         setSearchTerm("")
@@ -36,7 +32,7 @@ export default function SearchBar(props){
 
     return (
         <View>
-            <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={localChangeHandler} value={searchTerm} />
+            <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChangeText={setSearchTerm} value={searchTerm} />
             <Button onPress={searchBarPressHandler} title="🔎" />
         </View>
     )
