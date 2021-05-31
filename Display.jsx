@@ -30,6 +30,9 @@ const Display = (props) => {
     /* access the Ratings Key, then at Value key. Get the number and slice before %. Convert to num from string */
     const medianRTScore = props.movieInDisplay["Ratings"].forEach((rating) => {
         let result = 0
+        // if (props.movieInDisplay.length === 1){
+        //     return props.movieInDisplay["Ratings"][
+        // }
         if (movie["Ratings"]["Source"] == "Rotten Tomatoes"){
             let ratingToNum = parseInt(movie["Ratings"]["Value"].slice("%"))
             result += ratingToNum
@@ -41,14 +44,16 @@ const Display = (props) => {
 
     return(
         <>
-            <View>{/* Box Office Mean */}</View>
-
             <View>
-                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {medianRTScore}</Text>
+                <Text style={styles.tableText}>Box Office Mean: ${}</Text>
             </View>
 
             <View>
-                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {medianRTScore}</Text>
+                <Text style={styles.tableText}>Box Office Standard Deviation: ${}</Text>
+            </View>
+
+            <View>
+                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {medianRTScore}%</Text>
             </View>
         </>
     )
