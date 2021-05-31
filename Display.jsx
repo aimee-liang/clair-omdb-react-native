@@ -1,8 +1,6 @@
 /*
-
 Display should be displayed underneath SearchBar. 
     It will need three variables to calculate for Mean, Standard Deviation, and Rotten Tomatoes score
-
 */
 
 import React, {useState} from 'react'
@@ -15,7 +13,11 @@ const styles = StyleSheet.create({
     },
     tableText: {
         fontSize: 14
-    }
+    },
+    // posterSize: {
+    //     width:,
+    //     height: 
+    // }
 })
 
 const Display = (props) => {
@@ -39,7 +41,7 @@ const Display = (props) => {
 
     return(
         <>
-            <Image>{props.movieInDisplay.poster}</Image>
+            <Image source={{uri: `${props.movieInDisplay.poster}`}} />
             <View>{/* Box Office Mean */}</View>
 
             <View>

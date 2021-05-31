@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 import SearchBar from './SearchBar';
+import Result from './Result'
+import Display from './Display';
 // import Display from "./Display"
 
 export default function App() {
   const [movieInDisplay, setMovieInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
-  // const [moviesInState, setMoviesInState] = useState([]) /* this saves our fetched API in state to later filter from */
+  const [moviesInState, setMoviesInState] = useState([]) /* this saves movies from Result */
   const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t='
 
   /* function takes the title data, and checks to see if the data needs to be altered depending on whitespace */
@@ -31,6 +33,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <SearchBar editMovieTitle={editMovieTitle} />
+      <Result />
       {/* <Display movieInDisplay={movieInDisplay} /> */}
     </View>
   );

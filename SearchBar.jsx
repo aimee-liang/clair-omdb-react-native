@@ -5,7 +5,7 @@ This component will need useState hook: initial value of movie title as an empty
     Once user begins typing, the value will change to the e.target.value
         On tap/click/enter of keyboard event, the value will return to an empty string
 
-The data entered into SearchBar will be passed up to the parent component, which will handle this
+The data entered into SearchBar will be passed up to the parent component
 */
 
 import React, {useState} from 'react';
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export default function SearchBar (props){
+export default function SearchBar(props){
 
     const [searchTerm, setSearchTerm] = useState("")
 
