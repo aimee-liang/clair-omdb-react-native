@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 export default function Result(props){
 
     const resultPressHandler = () => {
-        props.
+        props.addMovieToDisplay(props.movieInResult)
     }
 
     return(

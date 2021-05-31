@@ -28,13 +28,13 @@ export default function App() {
   }
 
   /* movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
-  const addMovieToDisplay = () => {
-
+  const addMovieToDisplay = (data) => {
+    setMoviesInDisplay([...data])
   }
 
   return (
     <View style={styles.container}>
-      <SearchBar editMovieTitle={editMovieTitle} movieInResult={movieInResult} />
+      <SearchBar editMovieTitle={editMovieTitle} movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} />
       {/* <Display movieInDisplay={moviesInDisplay} /> */}
     </View>
   );

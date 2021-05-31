@@ -24,9 +24,8 @@ const styles = StyleSheet.create({
 export default function SearchBar(props){
 
     const [searchTerm, setSearchTerm] = useState("")
-    // const 
 
-    const changeHandler = (e) => {
+    const localChangeHandler = (e) => {
         setSearchTerm(e.target.value)
     }
 
@@ -35,14 +34,16 @@ export default function SearchBar(props){
     }
 
     return (
-        {props.movieInState ? 
+        {props.movieInResult ? 
 
             <View>
-                <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={changeHandler} value={searchTerm} />
+                <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={localChangeHandler} value={searchTerm} />
                 <Button onPress={searchBarPressHandler} title="🔎" />
             </View>
+
             : 
-            <Result />
+
+            <Result movieInResult={props.movieInResult} addMovieToDisplay={props.addMovieToDisplay} />
         }
     )
 }
