@@ -5,7 +5,7 @@ Result should render after user searches to confirm if this is the movie they wa
 */
 
 import React from 'react'
-import {StyleSheet, View, Button, Text, Image, TextInput} from 'react-native'
+import {StyleSheet, View, Button, Text, Image, TextInput, Modal} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
@@ -38,7 +38,6 @@ export default function Result(props){
     //     fetch(`${link}`)
     //         .then(response => response.json())
     //         .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed as props to Result.jsx */
-          // .catch(errors => setErrorFetchingMovie("We could not locate the movie you've searched. Please try again"))
     // }
 
     const resultPressHandler = () => {
@@ -62,7 +61,7 @@ export default function Result(props){
             <Text style={styles.yearText}>{props.movieInResult["Year"]}</Text>
             <Button onPress={resultPressHandler} title="Add to Search List" /> */}
             {/* {added ? 
-                <Button confirmationAlert() /> 
+                <Modal confirmationAlert() /> 
                 : 
                 null} */}
         </View>

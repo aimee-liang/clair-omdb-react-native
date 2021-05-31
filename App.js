@@ -7,7 +7,6 @@ import Result from "./Result"
 export default function App() {
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
   const [movieInResult, setMovieInResult] = useState([]) /* this saves movies from Result */
-  const [errorFetchingMovie, setErrorFetchingMovie] = useState("")
   const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t='
   // const [resultLink, setResultLink] = useState("")
 
@@ -29,7 +28,6 @@ export default function App() {
     fetch(`${link}`)
       .then(response => response.json())
       .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed as props to Result.jsx */
-      // .catch(errors => setErrorFetchingMovie("We could not locate the movie you've searched. Please try again"))
   }
 
   /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
@@ -43,7 +41,9 @@ export default function App() {
       {movieInResult.hasOwnProperty("Title") ? 
         <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> 
         : 
-        null}
+        null
+        /* <Text>"We could not locate the movie you've searched. Please try again. </Text> */
+      }
       {/* <Display movieInDisplay={moviesInDisplay} /> */}
     </View>
   );
