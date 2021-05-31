@@ -17,10 +17,17 @@ const styles = StyleSheet.create({
 })
 
 export default function Display(props){
+    const length = props.moviesInDisplay.length /* global variable since we are using this for all three calculations */
 
-    // use reduce to iterate and find the sum of the box office for all movies user has saved & divide by length of array
+
+    /*  Iterate through the array and access the "Box Office" key
+        Using reduce, find the sum of all movies user has saved 
+        Divide by length of array
+    */
     const boxOfficeMean = () => {
-        let length = props.moviesInDisplay.length
+        // return props.moviesInDisplay["BoxOffice"].reduce((acc, curr) => {
+        //     return acc + curr
+        // }, 0)
     }
 
     /* 
@@ -32,7 +39,6 @@ export default function Display(props){
 
     */
     const boxOfficeStandardDeviation = () => {
-        let length
         let average
         let result
         // iterate through array of data, and find the total

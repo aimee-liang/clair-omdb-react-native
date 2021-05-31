@@ -54,16 +54,16 @@ export default function Result(props){
 
     return(
         <>
-        {/* {console.log(props)} */}
         <View /* style={styles.container}*/ >
-            {/* <Image style={styles.movieImage} source={{uri: `${props.movieInResult["Poster"]}`}} />
+            <Image style={styles.movieImage} source={{uri: `${props.movieInResult["Poster"]}`}} />
             <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
             <Text style={styles.yearText}>{props.movieInResult["Year"]}</Text>
-            <Button onPress={resultPressHandler} title="Add to Search List" /> */}
-            {/* {added ? 
-                <Modal confirmationAlert() /> 
+            <Button onPress={resultPressHandler} title="Add to Search List" />
+            {added ? 
+                <Modal>{confirmationAlert}</Modal> 
                 : 
-                null} */}
+                null
+            }
         </View>
         </>
     )
