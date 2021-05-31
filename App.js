@@ -7,19 +7,18 @@ import Result from "./Result"
 export default function App() {
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movies we're saving from Result to Display */
   const [movieInResult, setMovieInResult] = useState([]) /* this saves movie in Result after fetching */
-  const [errorHandler, setErrorHandler] = useState("") /* to handle edge cases and errors on user's part */
   const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t='
 
   /* function takes the title data, and checks to see if the data needs to be altered depending on presence of whitespace, : */
   const editMovieTitle = (movieTitle) => {
-    if (movieTitle.includes(' ')){
-      let newMovieTitle = movieTitle.split(' ').join('+')
-      let updatedMovieLink = movieLink.concat(`${newMovieTitle}`)
-      fetchMovie(updatedMovieLink)
-    } else {
+    // if (movieTitle.includes(' ')){
+      // let newMovieTitle = movieTitle.split(' ').join('+')
+      // let updatedMovieLink = movieLink.concat(`${newMovieTitle}`)
+      // fetchMovie(updatedMovieLink)
+    // } else {
       let updatedMovieLink = movieLink.concat(`${movieTitle}`)
       fetchMovie(updatedMovieLink)
-    }
+    // }
   }
   
   /* fetch movie and return the one that matches the search term, set this in state */
