@@ -41,7 +41,6 @@ const Display = (props) => {
 
     return(
         <>
-            <Image source={{uri: `${props.movieInDisplay.poster}`}} />
             <View>{/* Box Office Mean */}</View>
 
             <View>

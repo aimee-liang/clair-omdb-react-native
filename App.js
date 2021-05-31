@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 import SearchBar from './SearchBar';
-import Result from './Result'
-import Display from './Display';
+// import Result from './Result'
 // import Display from "./Display"
 
 export default function App() {
@@ -33,7 +32,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <SearchBar editMovieTitle={editMovieTitle} />
-      <Result />
+      {/* <Result /> */}
       {/* <Display movieInDisplay={movieInDisplay} /> */}
     </View>
   );
