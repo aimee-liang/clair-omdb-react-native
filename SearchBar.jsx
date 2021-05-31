@@ -10,29 +10,39 @@ The data entered into SearchBar will be passed up to the parent component
 
 import React, {useState} from 'react';
 import {Button, Keyboard, StyleSheet, View, TextInput} from 'react-native'
+import Result from './Result'
 
 const styles = StyleSheet.create({
     searchText: {
         fontSize: 18
+    },
+    buttonStyle: {
+
     }
 })
 
 export default function SearchBar(props){
 
     const [searchTerm, setSearchTerm] = useState("")
+    // const 
 
     const changeHandler = (e) => {
         setSearchTerm(e.target.value)
     }
 
-    const pressHandler = () => {
+    const searchBarPressHandler = () => {
         props.editMovieTitle(searchTerm)
     }
 
     return (
-        <View>
-            <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={changeHandler} value={searchTerm} />
-            <Button onPress={pressHandler} title="🔎"/>
-        </View>
+        {props.movieInState ? 
+
+            <View>
+                <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={changeHandler} value={searchTerm} />
+                <Button onPress={searchBarPressHandler} title="🔎" />
+            </View>
+            : 
+            <Result />
+        }
     )
 }

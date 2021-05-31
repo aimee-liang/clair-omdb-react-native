@@ -16,21 +16,28 @@ const styles = StyleSheet.create({
         height: 30
     },
     movieTitleText: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: "bold",
         textAlign: "center"
+    },
+    yearText: {
+        fontSize: 16,
+        textAlign: center
     }
 })
 
 export default function Result(props){
 
-    const 
+    const resultPressHandler = () => {
+        props.
+    }
 
     return(
         <View style={styles.container}>
-            <Image source={{uri: `${props.movieInDisplay.poster}`}} />
-            <Text style={styles.movieTitleText}></Text>
-            <Button onPress={} title="+" />
+            <Image source={{uri: `${props.movieInResult["Poster"]}`}} />
+            <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
+            <Text style={styles.yearText}>{props.movieInResult["Year"]}</Text>
+            <Button onPress={resultPressHandler} title="+" />
         </View>
     )
 }

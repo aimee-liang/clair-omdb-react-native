@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 import SearchBar from './SearchBar';
-// import Result from './Result'
 // import Display from "./Display"
 
 export default function App() {
-  const [movieInDisplay, setMovieInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
-  const [moviesInState, setMoviesInState] = useState([]) /* this saves movies from Result */
+  const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
+  const [movieInResult, setMovieInResult] = useState([]) /* this saves movies from Result */
   const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t='
 
   /* function takes the title data, and checks to see if the data needs to be altered depending on whitespace */
@@ -25,15 +24,18 @@ export default function App() {
   const fetchMovie = (link) => {
     fetch(`${link}`)
       .then(response => response.json())
-      .then(data => moviesInDisplay(...data)) /* data needs to be spread out depending on whether there are multiple movies user wants searched */
-      .catch(errors => console.log(errors))
+      .then(data => movieInResult(data)) /* after fetching the movie we searched, this will be passed down in props to Result.jsx */
+  }
+
+  /* movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
+  const addMovieToDisplay = () => {
+
   }
 
   return (
     <View style={styles.container}>
-      <SearchBar editMovieTitle={editMovieTitle} />
-      {/* <Result /> */}
-      {/* <Display movieInDisplay={movieInDisplay} /> */}
+      <SearchBar editMovieTitle={editMovieTitle} movieInResult={movieInResult} />
+      {/* <Display movieInDisplay={moviesInDisplay} /> */}
     </View>
   );
 }
