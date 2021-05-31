@@ -1,6 +1,5 @@
 /*
-Display should be displayed underneath SearchBar. 
-    It will need three variables to calculate for Mean, Standard Deviation, and Rotten Tomatoes score
+Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes score
 */
 
 import React, {useState} from 'react'

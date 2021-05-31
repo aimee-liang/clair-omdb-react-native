@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Alert, StyleSheet, View } from 'react-native';
+import {NativeRouter, Route, Link} from 'react-router-native'
 import SearchBar from './SearchBar';
 import Result from "./Result"
 // import Display from "./Display"
@@ -47,17 +48,17 @@ export default function App() {
   }
 
   return (
-    <>
-    {console.log(movieInResult)}
-    <View style={styles.container}>
+    <NativeRouter>
+      <View style={styles.container}>
+        {/* <Route path="/Search" render={()=> <SearchBar editMovieTitle={editMovieTitle} />} /> */}
       <SearchBar editMovieTitle={editMovieTitle} />
-      {movieInResult.hasOwnProperty("Error") ? alertMessage() : null }
-      {movieInResult.hasOwnProperty("Title") ? 
-        <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> : null
-      }
-      {/* <Display movieInDisplay={moviesInDisplay} /> */}
-    </View>
-    </>
+        <Route path="/Display" render={()=> <Display movieInDisplay={moviesInDisplay} />} />
+        {movieInResult.hasOwnProperty("Error") ? alertMessage() : null }
+        {movieInResult.hasOwnProperty("Title") ? 
+          <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> : null
+        }
+      </View>
+    </NativeRouter>
   );
 }
 
