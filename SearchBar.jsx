@@ -37,14 +37,14 @@ export default function SearchBar(props){
         <>
             {props.movieInResult ? 
 
+                <Result movieInResult={props.movieInResult} addMovieToDisplay={props.addMovieToDisplay} />
+
+                : 
+
                 <View>
                     <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={localChangeHandler} value={searchTerm} />
                     <Button onPress={searchBarPressHandler} title="🔎" />
                 </View>
-
-                : 
-
-                <Result movieInResult={props.movieInResult} addMovieToDisplay={props.addMovieToDisplay} />
             }
         </>
     )
