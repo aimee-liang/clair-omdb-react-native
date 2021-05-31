@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import Result from "./Result"
 // import Display from "./Display"
 
+
 export default function App() {
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movies we're saving from Result to Display */
   const [movieInResult, setMovieInResult] = useState([]) /* this saves movie in Result after fetching */
