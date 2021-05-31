@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     buttonStyle: {
-
+        marginTop: "10%"
     }
 })
 
@@ -34,16 +34,18 @@ export default function SearchBar(props){
     }
 
     return (
-        {props.movieInResult ? 
+        <>
+            {props.movieInResult ? 
 
-            <View>
-                <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={localChangeHandler} value={searchTerm} />
-                <Button onPress={searchBarPressHandler} title="🔎" />
-            </View>
+                <View>
+                    <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChange={localChangeHandler} value={searchTerm} />
+                    <Button onPress={searchBarPressHandler} title="🔎" />
+                </View>
 
-            : 
+                : 
 
-            <Result movieInResult={props.movieInResult} addMovieToDisplay={props.addMovieToDisplay} />
-        }
+                <Result movieInResult={props.movieInResult} addMovieToDisplay={props.addMovieToDisplay} />
+            }
+        </>
     )
 }

@@ -28,8 +28,8 @@ export default function App() {
   }
 
   /* movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
-  const addMovieToDisplay = (data) => {
-    setMoviesInDisplay([...data])
+  const addMovieToDisplay = (movieInfo) => {
+    setMoviesInDisplay([...movieInfo])
   }
 
   return (

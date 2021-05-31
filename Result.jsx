@@ -9,7 +9,7 @@ import {StyleSheet, View, Button, Text, Image} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
-        margin: auto
+        margin: "auto"
     },
     movieImage: {
         width: 20,
@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
     movieTitleText: {
         fontSize: 20,
         fontWeight: "bold",
-        textAlign: "center"
+        textAlignVertical: "center"
     },
     yearText: {
         fontSize: 16,
-        textAlign: center
+        textAlignVertical: "center"
     }
 })
 
