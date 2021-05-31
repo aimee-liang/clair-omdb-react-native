@@ -6,12 +6,11 @@ import React, {useState} from 'react'
 import {StyleSheet, View} from 'react-native'
 
 const styles = StyleSheet.create({
-    titleText: {
-        fontSize: 18,
-        fontWeight: "bold"
+    container: {
+
     },
     tableText: {
-        fontSize: 14
+        fontSize: 18
     }
 })
 
@@ -59,18 +58,10 @@ export default function Display(props){
     }
 
     return(
-        <>
-            <View>
+        <View>
                 <Text style={styles.tableText}>Box Office Mean: ${}</Text>
-            </View>
-
-            <View>
                 <Text style={styles.tableText}>Box Office Standard Deviation: ${}</Text>
-            </View>
-
-            <View>
-                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {medianRTScore}%</Text>
-            </View>
-        </>
+                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {}%</Text>
+        </View>
     )
 }
