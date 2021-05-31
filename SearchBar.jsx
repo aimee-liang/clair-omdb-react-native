@@ -10,14 +10,13 @@ The data entered into SearchBar will be passed up to the parent component
 
 import React, {useState} from 'react';
 import {Button, Keyboard, StyleSheet, View, TextInput} from 'react-native'
-import Result from './Result'
 
 const styles = StyleSheet.create({
     searchText: {
         fontSize: 20
     },
     buttonStyle: {
-        marginTop: "10%"
+        marginTop: "2%"
     }
 })
 

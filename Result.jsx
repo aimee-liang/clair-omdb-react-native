@@ -8,25 +8,22 @@ import {StyleSheet, View, Button, Text, Image, TextInput} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
-        margin: "auto"
+        alignItems: "center",
     },
     movieImage: {
-        paddingTop: "1%",
-        paddingBottom: "1%",
+        marginTop: "7%",
+        marginBottom: "5%",
         width: 250,
-        height: 350
+        height: 380
     },
     movieTitleText: {
-        fontSize: 20,
+        fontSize: 28,
         fontWeight: "bold",
-        textAlignVertical: "center"
+        paddingBottom: "2%"
     },
     yearText: {
-        fontSize: 16,
-        textAlignVertical: "center"
-    },
-    buttonColor:{
-        backgroundColor: "yellow"
+        fontSize: 23,
+        paddingBottom: "5%"
     }
 })
 
@@ -54,7 +51,7 @@ export default function Result(props){
         <View style={styles.container} >
             <Image style={styles.movieImage} source={{uri: `${props.movieInResult["Poster"]}`}} />
             <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
-            <Text style={styles.yearText}>{props.movieInResult["Year"]}</Text>
+            <Text style={styles.yearText}>Released: {props.movieInResult["Year"]}</Text>
             <Button onPress={resultPressHandler} title="Add to Search List" />
             {added ? confirmationAlert() : null}
         </View>

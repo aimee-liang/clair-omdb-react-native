@@ -8,7 +8,7 @@ import Result from "./Result"
 
 export default function App() {
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movies we're saving from Result to Display */
-  const [movieInResult, setMovieInResult] = useState([]) /* this saves movie in Result after fetching */
+  const [movieInResult, setMovieInResult] = useState([]) /* this saves the movie in Result after fetching */
   const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t='
 
   /* function takes the title data, and checks to see if the data needs to be altered depending on presence of whitespace, : */
@@ -53,10 +53,8 @@ export default function App() {
         {/* <Route path="/Search" render={()=> <SearchBar editMovieTitle={editMovieTitle} />} /> */}
       <SearchBar editMovieTitle={editMovieTitle} />
         <Route path="/Display" render={()=> <Display movieInDisplay={moviesInDisplay} />} />
-        {movieInResult.hasOwnProperty("Error") ? alertMessage() : null }
-        {movieInResult.hasOwnProperty("Title") ? 
-          <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> : null
-        }
+        {movieInResult.hasOwnProperty("Error") ? alertMessage() : null}
+        {movieInResult.hasOwnProperty("Title") ? <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> : null}
       </View>
     </NativeRouter>
   );
