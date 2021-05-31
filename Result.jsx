@@ -4,7 +4,7 @@ Result should render after user searches to confirm if this is the movie they wa
 */
 
 import React, {useState} from 'react'
-import {StyleSheet, View, Button, Text, Image} from 'react-native'
+import {StyleSheet, View, Button, Text, Image, Alert} from 'react-native'
 import {Link} from 'react-router-native'
 
 const styles = StyleSheet.create({
@@ -33,7 +33,7 @@ export default function Result(props){
     const [added, setAdded] = useState(false)
 
     const resultPressHandler = () => {
-        props.addMovieToDisplay(props.movieInResult)
+        props.addMovieToDisplayComponent(props.movieInResult)
         setAdded(!added)
     }
 
@@ -54,7 +54,7 @@ export default function Result(props){
             <Image style={styles.movieImage} source={{uri: `${props.movieInResult["Poster"]}`}} />
             <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
             <Text style={styles.yearText}>Released: {props.movieInResult["Year"]}</Text>
-            <Button onPress={resultPressHandler} title="Add to Search List" />
+            <Button onPress={resultPressHandler} title="Save to My Search List" />
             {added ? confirmationAlert() : null}
         </View>
     )

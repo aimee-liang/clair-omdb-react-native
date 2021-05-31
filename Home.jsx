@@ -45,7 +45,7 @@ export default function Home(props){
         <View style={styles.container}>
             <SearchBar editMovieTitle={editMovieTitle}/>
             {movieInResult.hasOwnProperty("Error") ? alertMessage() : null}
-            {movieInResult.hasOwnProperty("Title") ? <Result movieInResult={movieInResult} /> : null}
+            {movieInResult.hasOwnProperty("Title") ? <Result movieInResult={movieInResult} addMovieToDisplayComponent={props.addMovieToDisplayComponent} /> : null}
         </View>
     )
 }
