@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 import SearchBar from './SearchBar';
+import Result from "./Result"
 // import Display from "./Display"
 
 export default function App() {
@@ -24,7 +25,7 @@ export default function App() {
   const fetchMovie = (link) => {
     fetch(`${link}`)
       .then(response => response.json())
-      .then(data => movieInResult(data)) /* after fetching the movie we searched, this will be passed down in props to Result.jsx */
+      .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed down in props to Result.jsx */
   }
 
   /* movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
@@ -33,10 +34,17 @@ export default function App() {
   }
 
   return (
+    <>
+    {console.log(movieInResult)}
     <View style={styles.container}>
-      <SearchBar editMovieTitle={editMovieTitle} movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} />
+      <SearchBar editMovieTitle={editMovieTitle} />
+        {movieInResult.length > 0 ? 
+          <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> 
+          : 
+          null}
       {/* <Display movieInDisplay={moviesInDisplay} /> */}
     </View>
+    </>
   );
 }
 
