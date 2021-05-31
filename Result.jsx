@@ -4,7 +4,7 @@ Result should render after user searches to confirm if this is the movie they wa
 */
 
 import React, {useState} from 'react'
-import {StyleSheet, View, Button, Text, Image, TextInput} from 'react-native'
+import {StyleSheet, View, Button, Text, Image} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
