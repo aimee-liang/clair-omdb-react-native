@@ -31,6 +31,7 @@ export default function SearchBar(props){
 
     const searchBarPressHandler = () => {
         props.editMovieTitle(searchTerm)
+        setSearchTerm("")
     }
 
     return (

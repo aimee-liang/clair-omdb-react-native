@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 export default function Result(props){
 
     // const [movieInResult, setMovieInResult] = useState([])
-    const [added, setAdded] = useState(false)
+    // const [added, setAdded] = useState(false)
 
     // const fetchMovie = (link) => {
     //     fetch(`${link}`)
@@ -59,11 +59,11 @@ export default function Result(props){
             <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
             <Text style={styles.yearText}>{props.movieInResult["Year"]}</Text>
             <Button onPress={resultPressHandler} title="Add to Search List" />
-            {added ? 
+            {/* {added ? 
                 <Modal>{confirmationAlert}</Modal> 
                 : 
                 null
-            }
+            } */}
         </View>
         </>
     )

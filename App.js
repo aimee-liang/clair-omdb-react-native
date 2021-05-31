@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Alert, StyleSheet, View } from 'react-native';
 import SearchBar from './SearchBar';
 import Result from "./Result"
 // import Display from "./Display"
@@ -7,10 +7,10 @@ import Result from "./Result"
 export default function App() {
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movies we're saving from Result to Display */
   const [movieInResult, setMovieInResult] = useState([]) /* this saves movie in Result after fetching */
-  const [errorHandler, setErrorHandler] = useState("")
+  const [errorHandler, setErrorHandler] = useState("") /* to handle edge cases and errors on user's part */
   const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t='
 
-  /* function takes the title data, and checks to see if the data needs to be altered depending on presence of whitespace */
+  /* function takes the title data, and checks to see if the data needs to be altered depending on presence of whitespace, : */
   const editMovieTitle = (movieTitle) => {
     if (movieTitle.includes(' ')){
       let newMovieTitle = movieTitle.split(' ').join('+')
@@ -23,12 +23,10 @@ export default function App() {
   }
   
   /* fetch movie and return the one that matches the search term, set this in state */
-    /* To do: how to handle edge cases? i.e. typos? */
   const fetchMovie = (link) => {
     fetch(`${link}`)
       .then(response => response.json())
       .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed as props to Result.jsx */
-      .catch(errors => setErrorHandler(errors.message))
   }
 
   /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
@@ -41,7 +39,7 @@ export default function App() {
     {console.log(movieInResult)}
     <View style={styles.container}>
       <SearchBar editMovieTitle={editMovieTitle} />
-      {errorHandler.length > 0 ? }
+      {/* {movieInResult.hasOwnProperty("Error") ? alert(`${movieInResult["Error"]}`) : null } */}
       {movieInResult.hasOwnProperty("Title") ? 
         <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> 
         :
