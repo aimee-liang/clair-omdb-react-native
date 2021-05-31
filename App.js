@@ -7,9 +7,11 @@ import Result from "./Result"
 export default function App() {
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movie when we filter through the API */
   const [movieInResult, setMovieInResult] = useState([]) /* this saves movies from Result */
+  const [errorFetchingMovie, setErrorFetchingMovie] = useState("")
   const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t='
+  // const [resultLink, setResultLink] = useState("")
 
-  /* function takes the title data, and checks to see if the data needs to be altered depending on whitespace */
+  /* function takes the title data, and checks to see if the data needs to be altered depending on presence of whitespace */
   const editMovieTitle = (movieTitle) => {
     if (movieTitle.includes(' ')){
       let newMovieTitle = movieTitle.split(' ').join('+')
@@ -20,28 +22,30 @@ export default function App() {
       fetchMovie(updatedMovieLink)
     }
   }
-
+  
   /* fetch movie and return the one that matches the search term, set this in state */
+    /* To do: how to handle edge cases? i.e. typos? */
   const fetchMovie = (link) => {
     fetch(`${link}`)
       .then(response => response.json())
-      .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed down in props to Result.jsx */
+      .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed as props to Result.jsx */
+      // .catch(errors => setErrorFetchingMovie("We could not locate the movie you've searched. Please try again"))
   }
 
-  /* movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
+  /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
   const addMovieToDisplay = (movieInfo) => {
     setMoviesInDisplay([...movieInfo])
   }
 
   return (
     <>
-    {console.log(movieInResult)}
+    {console.log(typeof movieInResult)}
     <View style={styles.container}>
       <SearchBar editMovieTitle={editMovieTitle} />
-        {movieInResult.length > 0 ? 
-          <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> 
-          : 
-          null}
+      {movieInResult.hasOwnProperty("Title") ? 
+        <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /*errorFetchingMovie={errorFetchingMovie} */ /> 
+        : 
+        null}
       {/* <Display movieInDisplay={moviesInDisplay} /> */}
     </View>
     </>
