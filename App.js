@@ -35,15 +35,15 @@ export default function App() {
   }
 
   const alertMessage = () => {
-  return Alert.alert(
-    "Error",
-    `${movieInResult["Error"]}`,
-    [
-      { text: "OK", onPress: () => console.log("OK Pressed") }
-    ],
-    { cancelable: true }
-  )}
-  ;
+    return Alert.alert(
+      "Error",
+      `${movieInResult["Error"]}`,
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: true }
+    )
+  }
 
   return (
     <>
@@ -52,9 +52,7 @@ export default function App() {
       <SearchBar editMovieTitle={editMovieTitle} />
       {movieInResult.hasOwnProperty("Error") ? alertMessage() : null }
       {movieInResult.hasOwnProperty("Title") ? 
-        <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> 
-        :
-        null
+        <Result movieInResult={movieInResult} addMovieToDisplay={addMovieToDisplay} /> : null
       }
       {/* <Display movieInDisplay={moviesInDisplay} /> */}
     </View>

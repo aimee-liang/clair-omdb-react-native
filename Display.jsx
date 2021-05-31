@@ -4,7 +4,7 @@ Display should be displayed underneath SearchBar.
 */
 
 import React, {useState} from 'react'
-import {StyleSheet, View, Image} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 
 const styles = StyleSheet.create({
     titleText: {
