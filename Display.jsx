@@ -63,13 +63,7 @@ export default function Display(props){
         }))
     }
 
-    /* 
-    Access the Ratings Key, then at Value key forEach object in array. Get the number, slice before %, convert to num from string, and store in array?
-        Sort through the scores
-        const length = length of array of movies
-            median = Array[(length + 1) / length] (if odd)
-            if even, Math.floor and Math.ceil the median, find the values at that index in the array, then sum it up and divide by length
-    */
+    /* Access the Ratings Key, then at Value key forEach object in array. Get the number, slice before %, convert to num from string, and store in array */
 
     const medianRTScore = (data) => {
         let range = []
@@ -85,10 +79,14 @@ export default function Display(props){
 
     }
 
-    /* helper function to sort for our median*/
-        /* this can be cleaned up for optimization */
+    /* helper function to sort for our median score
+            median = Array[(length + 1) / length] (if odd)
+            if even, Math.floor and Math.ceil the median, find the values at that index in the array, then sum it up and divide by length
+    /* this sorting can be cleaned up for optimization - time constraints*/
     const sortForMedian = (array) => {
-
+        const length = array.length
+        let nums = array.sort((a, b) => a - b)
+        
     }
 
 
@@ -109,7 +107,7 @@ export default function Display(props){
                 <View>
                     <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean(props.moviesInDisplay)}</Text>
                     <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation(props.moviesInDisplay)}</Text>
-                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {}%</Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {}</Text>
                 </View>
             :
             props.moviesInDisplay.length === 1 ? /* if not, display just the one movie they've saved */
