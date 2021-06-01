@@ -1,7 +1,7 @@
 /* Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes score */
 
 import React, {useState} from 'react'
-import {StyleSheet, View, Text, Alert, Image} from 'react-native'
+import {StyleSheet, View, Text, Alert} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
@@ -12,12 +12,6 @@ const styles = StyleSheet.create({
     },
     titleText: {
         fontSize: 28
-    }, 
-    movieImage: {
-        marginTop: "7%",
-        marginBottom: "7%",
-        width: 250,
-        height: 380
     }
 })
 
@@ -112,7 +106,6 @@ export default function Display(props){
 
     return(
         <>
-        {console.log(props.moviesInDisplay)}
         <View>
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
                 <View>
