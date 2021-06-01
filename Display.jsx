@@ -52,7 +52,7 @@ export default function Display(props){
         moviesFromProps.forEach((movie) => {
             let stringToNum = parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
             result += Math.pow((stringToNum - totalMean), 2)
-            final = Math.sqrt(result / length )
+            final = Math.sqrt(result / length ).toFixed(2)
         })
         return final.toLocaleString(('en-US', {
             style: 'currency',
@@ -74,7 +74,7 @@ export default function Display(props){
                 }
             })
         })
-        sortForMedian(range)
+        return sortForMedian(range)
     }
 
     /* helper function to sort for our median score
@@ -88,7 +88,7 @@ export default function Display(props){
         let sum
 
         if (length % 2 === 1){
-            return sortedScores[index]
+            sum = sortedScores[index]
         } else if (length % 2 === 0){
             let firstIndex = Math.floor(index)
             let secondIndex = Math.ceil(index)
@@ -111,10 +111,10 @@ export default function Display(props){
     return(
         <>
         <View>
-            {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
+            {props.moviesInDisplay? /* has the user saved multiple movies? */ 
                 <View>
-                    <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean()} </Text>
-                    <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation()} </Text>
+                    <Text style={styles.dataText}>Box Office Mean: {/* boxOfficeMean() */} </Text>
+                    <Text style={styles.dataText}>Box Office Standard Deviation: ${/* boxOfficeStandardDeviation() */} </Text>
                     <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore()}% </Text>
                 </View>
             :
