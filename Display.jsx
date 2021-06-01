@@ -22,9 +22,11 @@ export default function Display(props){
         Using reduce, find the sum of all movies user has saved 
         Divide by length
     */
-    const boxOfficeMean = (data) => {
-        const length = data.length
-        let boxOfficeValues = data.filter((movie) => {
+    const boxOfficeMean = () => {
+        const moviesFromProps = props.moviesInDisplay
+        const length = moviesFromProps.length
+
+        let boxOfficeValues = moviesFromProps.filter((movie) => {
             return parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
         })
         let mean = boxOfficeValues.reduce((acc, curr) => {
@@ -41,17 +43,18 @@ export default function Display(props){
     2. Then for each number: subtract the Mean and square the result
     3. Then work out the mean of those squared differences.
     4. Take the square root of that and we are done! */
-    const boxOfficeStandardDeviation = (data) => {
-        const length = data.length
+    const boxOfficeStandardDeviation = () => {
+        let moviesFromProps = props.moviesInDisplay
+        const length = moviesFromProps.length
         let result = 0
         let final
 
-        data.forEach((movie) => {
+        moviesFromProps.forEach((movie) => {
             let stringToNum = parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
             result += Math.pow((stringToNum - totalMean), 2)
             final = Math.sqrt(result / length )
         })
-        return result.toLocaleString(('en-US', {
+        return final.toLocaleString(('en-US', {
             style: 'currency',
             currency: 'USD'
         }))
@@ -59,10 +62,11 @@ export default function Display(props){
 
     /* Access the Ratings Key, then at Value key forEach object in array. Get the number, slice before %, convert to num from string, and store in array */
 
-    const medianRTScore = (data) => {
+    const medianRTScore = () => {
         let range = []
+        const moviesFromProps = props.moviesInDisplay
 
-        data.forEach((movie) => {
+        moviesFromProps.forEach((movie) => {
             movie["Ratings"].forEach((rating) => {
                 if (rating["Value"].includes("%")){
                     let score = parseInt(rating["Value"].slice(0, rating["Value"].length -1))
@@ -109,9 +113,9 @@ export default function Display(props){
         <View>
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
                 <View>
-                    <Text style={styles.dataText}>Box Office Mean: {/* {boxOfficeMean(props.moviesInDisplay)} */} </Text>
-                    <Text style={styles.dataText}>Box Office Standard Deviation: { /* ${boxOfficeStandardDeviation(props.moviesInDisplay)} */}  </Text>
-                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {/* {medianRTScore}% */} </Text>
+                    <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean()} </Text>
+                    <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation()} </Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore()}% </Text>
                 </View>
             :
             errorAlert() /* and if the user navigates here without one or more saved movies, receives error message */
