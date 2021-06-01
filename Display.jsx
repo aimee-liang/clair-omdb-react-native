@@ -1,6 +1,4 @@
-/*
-Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes score
-*/
+/* Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes score */
 
 import React, {useState} from 'react'
 import {StyleSheet, View, Text, Alert, Image} from 'react-native'
@@ -24,7 +22,6 @@ const styles = StyleSheet.create({
 })
 
 export default function Display(props){
-    const length = props.moviesInDisplay.length /* global variable since we are using this for all three calculations */
     const [totalMean, setTotalMean] = useState(0) /* save totalMean since two functions are using this for formulas? */
 
     /*  Iterate through the array and access the "Box Office" key. Make this a number and remove any non-numeric characters
@@ -32,8 +29,8 @@ export default function Display(props){
         Divide by length
     */
     const boxOfficeMean = (data) => {
+        const length = data.length
         let boxOfficeValues = data.filter((movie) => {
-        // let boxOfficeValues = props.moviesInDisplay.filter((movie) => {
             return parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
         })
         let mean = boxOfficeValues.reduce((acc, curr) => {
@@ -46,21 +43,16 @@ export default function Display(props){
         }))
     }
 
-    /* 
-    1. Work out the Mean (the simple average of the numbers)
+    /* 1. Work out the Mean (the simple average of the numbers)
     2. Then for each number: subtract the Mean and square the result
     3. Then work out the mean of those squared differences.
-    4. Take the square root of that and we are done!
-    */
+    4. Take the square root of that and we are done! */
     const boxOfficeStandardDeviation = (data) => {
-        // iterate through array of data, and find the total
-        // divide this by length, and assign result to average variable
-        // let average = boxOfficeMean(props.moviesInDisplay)
+        const length = data.length
         let result = 0
         let final
 
         data.forEach((movie) => {
-        // props.moviesInDisplay.forEach((movie) => {
             let stringToNum = parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
             result += Math.pow((stringToNum - totalMean), 2)
             final = Math.sqrt(result / length )
@@ -78,15 +70,19 @@ export default function Display(props){
             median = Array[(length + 1) / length] (if odd)
             if even, Math.floor and Math.ceil the median, find the values at that index in the array, then sum it up and divide by length
     */
-    const medianRTScore = () => {
-        let rangeOfTomatoes = []
+    const medianRTScore = (data) => {
+        let rangeOfScores = []
+
+        let rottenScores = data.filter((score) => {
+            return parseInt
+        })
 
     }
 
     const errorAlert = () => {        
         return Alert.alert(
             "Error!",
-            "You have not saved any movies for our app to render data",
+            "You haven't saved any movies to display data",
             [
                 { text: "OK", onPress: () => console.log("OK Pressed") },
             ],
