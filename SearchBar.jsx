@@ -24,13 +24,13 @@ export default function SearchBar(props){
     const searchBarPressHandler = () => {
         props.editMovieTitle(searchTerm)
         setSearchTerm("")
-        Keyboard.dismiss()
+        // Keyboard.dismiss()
     }
 
     return (
         <View> 
             {/* need to correct so screen is not pushed up when keyboard is active */}
-            <TextInput style={styles.searchText} placeholder="Search movies..." onBlur={Keyboard.dismiss} onChangeText={setSearchTerm} value={searchTerm} />
+            <TextInput style={styles.searchText} placeholder="Search movies..." onChangeText={setSearchTerm} value={searchTerm} />
             <Button onPress={searchBarPressHandler} title="🔎" />
         </View>
     )

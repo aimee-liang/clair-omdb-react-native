@@ -34,6 +34,7 @@ export default function Result(props){
     const resultPressHandler = () => {
         props.addMovieToDisplayComponent(props.movieInResult)
         setAdded(!added)
+        props.doneFetching(true)
     }
 
     /* Confirmation alert for UX: user is aware they've saved this movie to their search list */
@@ -53,7 +54,7 @@ export default function Result(props){
             <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
             <Text style={styles.yearText}>Released: {props.movieInResult["Year"]}</Text>
             <Button onPress={resultPressHandler} title="Save to My Search List" />
-            {added ? confirmationAlert() : null}
+            {added && props.doneFetching ? confirmationAlert() : null}
         </View>
     )
 }

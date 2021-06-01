@@ -116,7 +116,7 @@ export default function Display(props){
                 <View>
                     <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean(props.moviesInDisplay)}</Text>
                     <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation(props.moviesInDisplay)}</Text>
-                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {}%</Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore}%</Text>
                 </View>
             :
             props.moviesInDisplay.length === 1 ? /* if not, display just the one movie they've saved */

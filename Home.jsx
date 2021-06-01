@@ -15,6 +15,7 @@ export default function Home(props){
     });
 
     const [movieInResult, setMovieInResult] = useState([]) /* this saves the movie in Result after fetching */
+    const [doneFetching, setDoneFetching] = useState(false) /* flag variable - if done fetching, 
     const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t=' /* link to API with key to later concat */
 
     const editMovieTitle = (movieTitle) => {
@@ -27,6 +28,11 @@ export default function Home(props){
         fetch(`${link}`)
         .then(response => response.json())
         .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed as props to Result.jsx */
+        fetched()
+    }
+
+    const fetched = () => {
+        setDoneFetching(!doneFetching)
     }
 
     /* error message in event of user error */
@@ -45,7 +51,9 @@ export default function Home(props){
         <View style={styles.container}>
             <SearchBar editMovieTitle={editMovieTitle}/>
             {movieInResult.hasOwnProperty("Error") ? alertMessage() : null}
-            {movieInResult.hasOwnProperty("Title") ? <Result movieInResult={movieInResult} addMovieToDisplayComponent={props.addMovieToDisplayComponent} /> : null}
+            {movieInResult.hasOwnProperty("Title") ? <Result movieInResult={movieInResult} addMovieToDisplayComponent={props.addMovieToDisplayComponent} doneFetching={doneFetching} /> 
+            : 
+            null}
         </View>
     )
 }
