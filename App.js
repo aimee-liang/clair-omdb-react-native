@@ -9,7 +9,7 @@ export default function App() {
 
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 0.9,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
@@ -19,13 +19,11 @@ export default function App() {
       flexDirection: "row",
     },
     navItem: {
-      fontWeight: 'bold',
       alignItems: "center",
-      padding: 50
+      padding: 40
     },
     navText :{
-      fontSize: 28,
-      fontWeight: "bold"
+      fontSize: 26,
     }
   })
 
