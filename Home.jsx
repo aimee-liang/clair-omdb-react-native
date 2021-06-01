@@ -31,6 +31,7 @@ export default function Home(props){
         finishedFetching()
     }
 
+    /* handles setting state of doneFetching */
     const finishedFetching = () => {
         setDoneFetching(!doneFetching)
     }

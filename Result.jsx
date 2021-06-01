@@ -34,7 +34,20 @@ export default function Result(props){
     const resultPressHandler = () => {
         props.addMovieToDisplayComponent(props.movieInResult)
         setAdded(!added)
-        !props.doneFetching
+    }
+
+    /* controlled function that can update the state of doneFetching for multiple searches */
+    const updateDoneFetching = () => {
+        if (added === true && (props.doneFetching)){
+            return true
+        } 
+        if (added === false && (props.doneFetching)){ /* if user has not added the movie, but is done searching for it. Both values will turn true */
+            !props.doneFetching
+            return false
+        }
+        if (!added && !props.doneFetching){
+            return true
+        }
     }
 
     /* Confirmation alert for UX: user is aware they've saved this movie to their search list */
@@ -49,12 +62,16 @@ export default function Result(props){
     )}
 
     return(
+        <>
+        {console.log("Added", added)}
+        {console.log("done fetching?", props.doneFetching)}
         <View style={styles.container} >
             <Image style={styles.movieImage} source={{uri: `${props.movieInResult["Poster"]}`}} />
             <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
             <Text style={styles.yearText}>Released: {props.movieInResult["Year"]}</Text>
             <Button onPress={resultPressHandler} title="Save to My Search List" />
-            {added && props.doneFetching ? confirmationAlert() : null}
+            {updateDoneFetching() ? confirmationAlert() : null}
         </View>
+        </>
     )
 }
