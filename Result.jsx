@@ -62,9 +62,6 @@ export default function Result(props){
     )}
 
     return(
-        <>
-        {console.log("Added", added)}
-        {console.log("done fetching?", props.doneFetching)}
         <View style={styles.container} >
             <Image style={styles.movieImage} source={{uri: `${props.movieInResult["Poster"]}`}} />
             <Text style={styles.movieTitleText}>{props.movieInResult["Title"]}</Text>
@@ -72,6 +69,5 @@ export default function Result(props){
             <Button onPress={resultPressHandler} title="Save to My Search List" />
             {updateDoneFetching() ? confirmationAlert() : null}
         </View>
-        </>
     )
 }

@@ -31,7 +31,7 @@ export default function App() {
 
   /* to address the re-renders */
   useEffect(() => {
-    addMovieToDisplayComponent
+    addMovieToDisplayComponent()
   }, [])
   
   /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */

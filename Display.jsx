@@ -103,14 +103,16 @@ export default function Display(props){
     const errorAlert = () => {        
         return Alert.alert(
             "Error!",
-            "You haven't saved any movies to display data",
+            "You haven't saved enough movies to display data",
             [
-                { text: "OK", onPress: () => console.log("OK Pressed") },
+                { text: "OK", onPress: () => console.log("OK Option Pressed") },
             ],
             { cancelable: true }
     )}
 
     return(
+        <>
+        {console.log(props.moviesInDisplay)}
         <View>
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
                 <View>
@@ -119,15 +121,9 @@ export default function Display(props){
                     <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore}%</Text>
                 </View>
             :
-            props.moviesInDisplay.length === 1 ? /* if not, display just the one movie they've saved */
-                <View>
-                    <Image style={styles.movieImage} source={{uri: `${props.moviesInDisplay[0]["Poster"]}`}} />
-                    <Text style={styles.titleText}>{props.moviesInDisplay[0]["Title"]}</Text>
-                    <Text style={styles.dataText}>Box Office Total: {props.moviesInDisplay[0]["BoxOffice"]}</Text>
-                </View>
-            :
-            errorAlert() /* and if the user navigates here without any saved movies, receives error message */
+            errorAlert() /* and if the user navigates here without one or more saved movies, receives error message */
             }
         </View>
+        </>
     )
 }
