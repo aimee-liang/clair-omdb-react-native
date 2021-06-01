@@ -76,7 +76,7 @@ export default function Display(props){
                 }
             })
         })
-
+        sortForMedian(range)
     }
 
     /* helper function to sort for our median score
@@ -85,8 +85,18 @@ export default function Display(props){
     /* this sorting can be cleaned up for optimization - time constraints*/
     const sortForMedian = (array) => {
         const length = array.length
-        let nums = array.sort((a, b) => a - b)
-        
+        let sortedScores = array.sort((a, b) => a - b)
+        let index = ((length + 1) / 2)
+        let sum
+
+        if (length % 2 === 1){
+            return sortedScores[index]
+        } else if (length % 2 === 0){
+            let firstIndex = Math.floor(index)
+            let secondIndex = Math.ceil(index)
+            sum = (((sortedScores[firstIndex]) + sortedScores[secondIndex]) / 2)
+        }
+        return sum
     }
 
 
@@ -102,12 +112,11 @@ export default function Display(props){
 
     return(
         <View>
-        {console.log(props.moviesInDisplay.length)}
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
                 <View>
                     <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean(props.moviesInDisplay)}</Text>
                     <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation(props.moviesInDisplay)}</Text>
-                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {}</Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {}%</Text>
                 </View>
             :
             props.moviesInDisplay.length === 1 ? /* if not, display just the one movie they've saved */
