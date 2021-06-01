@@ -8,19 +8,6 @@ import Display from "./Display"
 export default function App() {
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movies we're saving from Result to Display */
 
-  /* function takes the title data, and checks to see if the data needs to be altered depending on presence of whitespace, : */
-  // const editMovieTitle = (movieTitle) => {
-    // if (movieTitle.includes(' ')){
-      // let newMovieTitle = movieTitle.split(' ').join('+')
-      // let updatedMovieLink = movieLink.concat(`${newMovieTitle}`)
-      // fetchMovie(updatedMovieLink)
-    // } else {
-  //     let updatedMovieLink = movieLink + movieTitle
-  //     // let updatedMovieLink = movieLink.concat(`${movieTitle}`)
-  //     fetchMovie(updatedMovieLink)
-    // }
-  // }
-
   /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
   const addMovieToDisplayComponent = (movieInfo) => {
     setMoviesInDisplay([...moviesInDisplay, movieInfo])
