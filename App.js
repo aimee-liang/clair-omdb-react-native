@@ -6,6 +6,29 @@ import Display from "./Display"
 
 
 export default function App() {
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    nav: {
+      marginTop: "4%",
+      flexDirection: "row",
+    },
+    navItem: {
+      fontWeight: 'bold',
+      alignItems: "center",
+      padding: 50
+    },
+    navText :{
+      fontSize: 28,
+      fontWeight: "bold"
+    }
+  })
+
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movies we're saving from Result to Display */
 
   /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
@@ -18,10 +41,10 @@ export default function App() {
       <View style={styles.container}>
         <View style={styles.nav}>
           <Link to="/" style={styles.navItem}>
-            <Text>Home</Text>
+            <Text style={styles.navText}>Home</Text>
           </Link>
           <Link to="/display" style={styles.navItem}>
-            <Text>Display</Text>
+            <Text style={styles.navText}>Display</Text>
           </Link>
           </View>
         <Route path="/display" render={()=> <Display moviesInDisplay={moviesInDisplay} />} />
@@ -30,23 +53,3 @@ export default function App() {
     </NativeRouter>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  nav: {
-    marginTop: "5%",
-    flexDirection: "row",
-    justifyContent: "space-around"
-  },
-  navItem: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    alignItems: "center",
-    padding: 10
-  },
-});

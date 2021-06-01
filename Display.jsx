@@ -8,13 +8,18 @@ import {StyleSheet, View, Text, Alert, Image} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        justifyContent: "space-between"
     },
     dataText: {
         fontSize: 22
     },
     titleText: {
         fontSize: 28
+    }, 
+    movieImage: {
+        marginTop: "7%",
+        marginBottom: "7%",
+        width: 250,
+        height: 380
     }
 })
 
@@ -93,7 +98,7 @@ export default function Display(props){
 
     return(
         <View>
-        {console.log("props", props.moviesInDisplay)}
+        {console.log(props.moviesInDisplay)}
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
                 <View>
                     <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean(props.moviesInDisplay)}</Text>
@@ -103,12 +108,12 @@ export default function Display(props){
             :
             props.moviesInDisplay.length === 1 ? /* if not, display just the one movie they've saved */
                 <View>
-                    <Image source={{uri: `${props.moviesInDisplay["Poster"]}`}} />
-                    <Text style={styles.titleText}>{props.moviesInDisplay["Title"]}</Text>
-                    <Text style={styles.dataText}>${props.moviesInDisplay["BoxOffice"]}</Text>
+                    <Image style={styles.movieImage} source={{uri: `${props.moviesInDisplay[0]["Poster"]}`}} />
+                    <Text style={styles.titleText}>{props.moviesInDisplay[0]["Title"]}</Text>
+                    <Text style={styles.dataText}>Box Office Total: {props.moviesInDisplay[0]["BoxOffice"]}</Text>
                 </View>
             :
-            errorAlert() /* and if the user by some chance is able to navigate here without any saved movies, receives error message */
+            errorAlert() /* and if the user navigates here without any saved movies, receives error message */
             }
         </View>
     )
