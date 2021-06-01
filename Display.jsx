@@ -70,14 +70,27 @@ export default function Display(props){
             median = Array[(length + 1) / length] (if odd)
             if even, Math.floor and Math.ceil the median, find the values at that index in the array, then sum it up and divide by length
     */
-    const medianRTScore = (data) => {
-        let rangeOfScores = []
 
-        let rottenScores = data.filter((score) => {
-            return parseInt
+    const medianRTScore = (data) => {
+        let range = []
+
+        data.forEach((movie) => {
+            movie["Ratings"].forEach((rating) => {
+                if (rating["Value"].includes("%")){
+                    let score = parseInt(rating["Value"].slice(0, rating["Value"].length -1))
+                    range.push(score)
+                }
+            })
         })
 
     }
+
+    /* helper function to sort for our median*/
+        /* this can be cleaned up for optimization */
+    const sortForMedian = (array) => {
+
+    }
+
 
     const errorAlert = () => {        
         return Alert.alert(
