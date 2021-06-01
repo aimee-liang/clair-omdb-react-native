@@ -24,7 +24,7 @@ export default function SearchBar(props){
     const searchBarPressHandler = () => {
         props.editMovieTitle(searchTerm)
         setSearchTerm("")
-        // Keyboard.dismiss()
+        Keyboard.dismiss()
     }
 
     return (

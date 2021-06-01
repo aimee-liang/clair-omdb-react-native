@@ -34,7 +34,7 @@ export default function Result(props){
     const resultPressHandler = () => {
         props.addMovieToDisplayComponent(props.movieInResult)
         setAdded(!added)
-        props.doneFetching(true)
+        !props.doneFetching
     }
 
     /* Confirmation alert for UX: user is aware they've saved this movie to their search list */

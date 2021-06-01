@@ -15,7 +15,7 @@ export default function Home(props){
     });
 
     const [movieInResult, setMovieInResult] = useState([]) /* this saves the movie in Result after fetching */
-    const [doneFetching, setDoneFetching] = useState(false) /* flag variable - if done fetching, 
+    const [doneFetching, setDoneFetching] = useState(false) /* flag variable - if done fetching, will be set to the opposite value of initial state */
     const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t=' /* link to API with key to later concat */
 
     const editMovieTitle = (movieTitle) => {
@@ -28,10 +28,10 @@ export default function Home(props){
         fetch(`${link}`)
         .then(response => response.json())
         .then(data => setMovieInResult(data)) /* after fetching the movie we searched, this will be passed as props to Result.jsx */
-        fetched()
+        finishedFetching()
     }
 
-    const fetched = () => {
+    const finishedFetching = () => {
         setDoneFetching(!doneFetching)
     }
 
