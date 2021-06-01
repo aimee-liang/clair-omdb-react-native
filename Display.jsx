@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     dataText: {
-        fontSize: 22
+        fontSize: 18
     },
     titleText: {
         fontSize: 28
@@ -109,9 +109,9 @@ export default function Display(props){
         <View>
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
                 <View>
-                    <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean(props.moviesInDisplay)}</Text>
-                    <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation(props.moviesInDisplay)}</Text>
-                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore}%</Text>
+                    <Text style={styles.dataText}>Box Office Mean: {/* {boxOfficeMean(props.moviesInDisplay)} */} </Text>
+                    <Text style={styles.dataText}>Box Office Standard Deviation: { /* ${boxOfficeStandardDeviation(props.moviesInDisplay)} */}  </Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {/* {medianRTScore}% */} </Text>
                 </View>
             :
             errorAlert() /* and if the user navigates here without one or more saved movies, receives error message */
