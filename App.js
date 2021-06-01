@@ -47,7 +47,7 @@ export default function App() {
             <Text style={styles.navText}>Display</Text>
           </Link>
           </View>
-        <Route path="/display" render={()=> <Display moviesInDisplay={moviesInDisplay} />} />
+        <Route exact path ="/display" render={()=> <Display moviesInDisplay={moviesInDisplay} />} />
         <Route exact path ="/" render={() => <Home addMovieToDisplayComponent={addMovieToDisplayComponent} />} />
       </View>
     </NativeRouter>

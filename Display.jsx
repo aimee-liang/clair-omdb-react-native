@@ -31,8 +31,9 @@ export default function Display(props){
         Using reduce, find the sum of all movies user has saved 
         Divide by length
     */
-    const boxOfficeMean = () => {
-        let boxOfficeValues = props.moviesInDisplay.filter((movie) => {
+    const boxOfficeMean = (data) => {
+        let boxOfficeValues = data.filter((movie) => {
+        // let boxOfficeValues = props.moviesInDisplay.filter((movie) => {
             return parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
         })
         let mean = boxOfficeValues.reduce((acc, curr) => {
@@ -46,28 +47,24 @@ export default function Display(props){
     }
 
     /* 
-
     1. Work out the Mean (the simple average of the numbers)
     2. Then for each number: subtract the Mean and square the result
     3. Then work out the mean of those squared differences.
     4. Take the square root of that and we are done!
-
     */
-    const boxOfficeStandardDeviation = () => {
+    const boxOfficeStandardDeviation = (data) => {
         // iterate through array of data, and find the total
         // divide this by length, and assign result to average variable
         // let average = boxOfficeMean(props.moviesInDisplay)
         let result = 0
         let final
-        
-        props.moviesInDisplay.forEach((movie) => {
+
+        data.forEach((movie) => {
+        // props.moviesInDisplay.forEach((movie) => {
             let stringToNum = parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
             result += Math.pow((stringToNum - totalMean), 2)
             final = Math.sqrt(result / length )
         })
-        // iterate again through the data, and forEach, subtract the average (saved as a variable) from the number, and square this
-        // sum the above, and divide again by length
-        // use Math.sqrt() on the mean, and return result
         return result.toLocaleString(('en-US', {
             style: 'currency',
             currency: 'USD'
@@ -98,7 +95,7 @@ export default function Display(props){
 
     return(
         <View>
-        {console.log(props.moviesInDisplay)}
+        {console.log(props.moviesInDisplay.length)}
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
                 <View>
                     <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean(props.moviesInDisplay)}</Text>
