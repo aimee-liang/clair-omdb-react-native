@@ -5,7 +5,6 @@ Result should render after user searches to confirm if this is the movie they wa
 
 import React, {useState} from 'react'
 import {StyleSheet, View, Button, Text, Image, Alert} from 'react-native'
-import {Link} from 'react-router-native'
 
 const styles = StyleSheet.create({
     container: {
@@ -44,7 +43,6 @@ export default function Result(props){
             "You have saved this movie",
             [
                 { text: "OK", onPress: () => console.log("OK Pressed") },
-                // { text: "View List", onPress: () => <Link to="/Display" component={Display}/> } /* link to view list from Result? */
             ],
             { cancelable: true }
     )}

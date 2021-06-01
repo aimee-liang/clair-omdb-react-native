@@ -3,29 +3,41 @@ Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes
 */
 
 import React, {useState} from 'react'
-import {StyleSheet, View, Text} from 'react-native'
+import {StyleSheet, View, Text, Alert, Image} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
-
+        alignItems: "center",
+        justifyContent: "space-between"
     },
-    tableText: {
-        fontSize: 18
+    dataText: {
+        fontSize: 22
+    },
+    titleText: {
+        fontSize: 28
     }
 })
 
 export default function Display(props){
     const length = props.moviesInDisplay.length /* global variable since we are using this for all three calculations */
+    const [totalMean, setTotalMean] = useState(0) /* save totalMean since two functions are using this for formulas? */
 
-
-    /*  Iterate through the array and access the "Box Office" key
+    /*  Iterate through the array and access the "Box Office" key. Make this a number and remove any non-numeric characters
         Using reduce, find the sum of all movies user has saved 
-        Divide by length of array
+        Divide by length
     */
     const boxOfficeMean = () => {
-        // return props.moviesInDisplay["BoxOffice"].reduce((acc, curr) => {
-        //     return acc + curr
-        // }, 0)
+        let boxOfficeValues = props.moviesInDisplay.filter((movie) => {
+            return parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
+        })
+        let mean = boxOfficeValues.reduce((acc, curr) => {
+            return ((acc + curr) / length)
+        })
+        setTotalMean(mean.toFixed(2))
+        return mean.toLocaleString(('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        }))
     }
 
     /* 
@@ -37,13 +49,24 @@ export default function Display(props){
 
     */
     const boxOfficeStandardDeviation = () => {
-        let average
-        let result
         // iterate through array of data, and find the total
         // divide this by length, and assign result to average variable
+        // let average = boxOfficeMean(props.moviesInDisplay)
+        let result = 0
+        let final
+        
+        props.moviesInDisplay.forEach((movie) => {
+            let stringToNum = parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
+            result += Math.pow((stringToNum - totalMean), 2)
+            final = Math.sqrt(result / length )
+        })
         // iterate again through the data, and forEach, subtract the average (saved as a variable) from the number, and square this
         // sum the above, and divide again by length
         // use Math.sqrt() on the mean, and return result
+        return result.toLocaleString(('en-US', {
+            style: 'currency',
+            currency: 'USD'
+        }))
     }
 
     /* 
@@ -54,14 +77,39 @@ export default function Display(props){
             if even, Math.floor and Math.ceil the median, find the values at that index in the array, then sum it up and divide by length
     */
     const medianRTScore = () => {
-        
+        let rangeOfTomatoes = []
+
     }
+
+    const errorAlert = () => {        
+        return Alert.alert(
+            "Error!",
+            "You have not saved any movies for our app to render data",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") },
+            ],
+            { cancelable: true }
+    )}
 
     return(
         <View>
-                <Text style={styles.tableText}>Box Office Mean: ${}</Text>
-                <Text style={styles.tableText}>Box Office Standard Deviation: ${}</Text>
-                <Text style={styles.tableText}>Median Rotten Tomatoes Score: {}%</Text>
+        {console.log("props", props.moviesInDisplay)}
+            {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */
+                <View>
+                    <Text style={styles.dataText}>Box Office Mean: {boxOfficeMean(props.moviesInDisplay)}</Text>
+                    <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation(props.moviesInDisplay)}</Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {}%</Text>
+                </View>
+            :
+            props.moviesInDisplay.length === 1 ? /* if not, display just the one movie they've saved */
+                <View>
+                    <Image source={{uri: `${props.moviesInDisplay["Poster"]}`}} />
+                    <Text style={styles.titleText}>{props.moviesInDisplay["Title"]}</Text>
+                    <Text style={styles.dataText}>${props.moviesInDisplay["BoxOffice"]}</Text>
+                </View>
+            :
+            errorAlert() /* and if the user by some chance is able to navigate here without any saved movies, receives error message */
+            }
         </View>
     )
 }

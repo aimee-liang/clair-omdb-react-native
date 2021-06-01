@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text} from 'react-native';
 import {NativeRouter, Route, Link} from 'react-router-native'
 import Home from "./Home"
 import Display from "./Display"
@@ -23,16 +23,22 @@ export default function App() {
 
   /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
   const addMovieToDisplayComponent = (movieInfo) => {
-    console.log(movieInfo)
-    // setMoviesInDisplay([...movieInfo])
+    setMoviesInDisplay([...moviesInDisplay, movieInfo])
   }
 
   return (
     <NativeRouter>
       <View style={styles.container}>
-        <Home addMovieToDisplayComponent={addMovieToDisplayComponent} />
-        {/* <Display moviesInDisplay={moviesInDisplay} /> */}
-        {/* <Route path="/Display" render={()=> <Display movieInDisplay={moviesInDisplay} />} /> */}
+        <View style={styles.nav}>
+          <Link to="/" style={styles.navItem}>
+            <Text>Home</Text>
+          </Link>
+          <Link to="/display" style={styles.navItem}>
+            <Text>Display</Text>
+          </Link>
+          </View>
+        <Route path="/display" render={()=> <Display moviesInDisplay={moviesInDisplay} />} />
+        <Route exact path ="/" render={() => <Home addMovieToDisplayComponent={addMovieToDisplayComponent} />} />
       </View>
     </NativeRouter>
   );
@@ -44,5 +50,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  nav: {
+    marginTop: "5%",
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  navItem: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    alignItems: "center",
+    padding: 10
   },
 });
