@@ -44,24 +44,19 @@ export default function App() {
   }
 
   return (
-    <>
-    {console.log("movies in Display:", moviesInDisplay)}
-    <NavigationContainer>
-      <Tab.Navigator style={styles.container}>
-        <Tab.Screen name="Home" component={homeScreen} />
-        <Tab.Screen name="Display" component={displayScreen} />
-        {/* <View style={styles.nav}>
+    <NativeRouter>
+      <View style={styles.container}>
+        <View style={styles.nav}>
           <Link to="/" style={styles.navItem}>
             <Text style={styles.navText}>Home</Text>
           </Link>
           <Link to="/display" style={styles.navItem}>
             <Text style={styles.navText}>Display</Text>
           </Link>
-          </View> */}
-        {/* <Route exact path ="/display" render={()=> <Display moviesInDisplay={moviesInDisplay} />} /> */}
-        {/* <Route exact path ="/" render={() => <Home addMovieToDisplayComponent={addMovieToDisplayComponent} />} /> */}
-      </Tab.Navigator>
-    </NavigationContainer>
-    </>
+          </View>
+        <Route exact path ="/display" render={()=> <Display moviesInDisplay={moviesInDisplay} />} />
+        <Route exact path ="/" render={() => <Home addMovieToDisplayComponent={addMovieToDisplayComponent} />} />
+      </View>
+    </NativeRouter>
   );
 }
