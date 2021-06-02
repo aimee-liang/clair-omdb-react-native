@@ -1,6 +1,7 @@
 /* Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes score */
 
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import 'Intl'
 import {StyleSheet, View, Text, Alert} from 'react-native'
 
 const styles = StyleSheet.create({
@@ -15,8 +16,14 @@ const styles = StyleSheet.create({
     }
 })
 
+// const formatter = new Intl.NumberFormat('en-US',
+// { style: 'currency', currency: 'USD' }
+// ).format(mean);
+
 export default function Display(props){
     const [totalMean, setTotalMean] = useState(0) /* save totalMean since two functions are using this for formulas? */
+    const [movieMean, setMovieMean] = useState([])
+
 
     /*  Iterate through the array and access the "Box Office" key. Make this a number and remove any non-numeric characters
         Using reduce, find the sum of all movies user has saved 
@@ -26,18 +33,26 @@ export default function Display(props){
         const moviesFromProps = props.moviesInDisplay
         const length = moviesFromProps.length
 
-        let boxOfficeValues = moviesFromProps.filter((movie) => {
+        let boxOfficeValues = moviesFromProps.map((movie) => {
             return parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
         })
         let mean = boxOfficeValues.reduce((acc, curr) => {
             return ((acc + curr) / length)
         })
-        setTotalMean(mean.toFixed(2))
+        
+        console.log("I'm mean:", new Intl.NumberFormat('en-US',
+        { style: 'currency', currency: 'USD' }
+        ).format(mean))
+        // setTotalMean(mean.toFixed(2))
         return mean.toLocaleString(('en-US', {
             style: 'currency',
             currency: 'USD'
         }))
     }
+
+    // useEffect(() => {
+    //     boxOfficeMean
+    // }, [movieMean])
 
     /* 1. Work out the Mean (the simple average of the numbers)
     2. Then for each number: subtract the Mean and square the result
@@ -111,11 +126,11 @@ export default function Display(props){
     return(
         <>
         <View>
-            {props.moviesInDisplay? /* has the user saved multiple movies? */ 
+            {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */ 
                 <View>
-                    <Text style={styles.dataText}>Box Office Mean: {/* boxOfficeMean() */} </Text>
+                    <Text style={styles.dataText}>Box Office Mean: { boxOfficeMean()} </Text>
                     <Text style={styles.dataText}>Box Office Standard Deviation: ${/* boxOfficeStandardDeviation() */} </Text>
-                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore()}% </Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {/*medianRTScore() */}% </Text>
                 </View>
             :
             errorAlert() /* and if the user navigates here without one or more saved movies, receives error message */
