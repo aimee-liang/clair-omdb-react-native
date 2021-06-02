@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 import {NativeRouter, Route, Link} from 'react-router-native'
 import Home from "./Home"
@@ -27,20 +27,10 @@ export default function App() {
   })
 
   const [moviesInDisplay, setMoviesInDisplay] = useState([]) /* this will be used to set state for the movies we're saving from Result to Display */
-  const [newMovie, setNewMovie] = useState([])
 
-  /* to address the re-renders? */
-  useEffect(() => {
-    if (newMovie.length > 0) addMovieToDisplayComponent(newMovie)
-  }, [])
-  
   /* the movie in Result should be set to state through moviesInDisplay, which will be assigned as props to Display.jsx */
   const addMovieToDisplayComponent = (movieInfo) => {
     setMoviesInDisplay([...moviesInDisplay, movieInfo])
-  }
-
-  const addNewMovie = (movieInfo) => {
-    setNewMovie(movieInfo)
   }
 
   return (

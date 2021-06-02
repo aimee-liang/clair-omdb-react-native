@@ -1,6 +1,6 @@
 /* Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes score */
 
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {StyleSheet, View, Text, Alert} from 'react-native'
 
 const styles = StyleSheet.create({
@@ -16,9 +16,6 @@ const styles = StyleSheet.create({
 })
 
 export default function Display(props){
-    const [totalMean, setTotalMean] = useState(0) /* save totalMean since two functions are using this for formulas? */
-    // const [movieMean, setMovieMean] = useState([])
-
 
     /*  Iterate through the array and access the "Box Office" key. Make this a number and remove any non-numeric characters
         Using reduce, find the sum of all movies user has saved 
@@ -29,37 +26,27 @@ export default function Display(props){
         const length = moviesFromProps.length
 
         let boxOfficeValues = moviesFromProps.map((movie) => {
-            return parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
+            return parseFloat(movie["BoxOffice"].slice(1).replace(/,/g, ''))
         })
         let mean = boxOfficeValues.reduce((acc, curr) => {
             return ((acc + curr) / length)
         })
-        // let finalMean = mean.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        // setMean(finalMean)
-        mean = mean.toFixed(2)
-        return mean.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        return mean
     }
-
-    const setMean = () => {
-        setTotalMean(boxOfficeMean())
-    }
-
-    useEffect(() => {
-        setMean
-    }, [])
 
     /* 1. Work out the Mean (the simple average of the numbers)
     2. Then for each number: subtract the Mean and square the result
     3. Then work out the mean of those squared differences.
     4. Take the square root of that and we are done! */
     const boxOfficeStandardDeviation = () => {
+        let totalMean = boxOfficeMean().toFixed(2)
         let moviesFromProps = props.moviesInDisplay
         const length = moviesFromProps.length
         let result = 0
         let final
 
         moviesFromProps.forEach((movie) => {
-            let stringToNum = parseInt(movie["BoxOffice"].slice(1).replace(/,/g, ''))
+            let stringToNum = parseFloat(movie["BoxOffice"].slice(1).replace(/,/g, ''))
             result += Math.pow((stringToNum - totalMean), 2)
             final = Math.sqrt(result / length ).toFixed(2)
         })
@@ -91,7 +78,7 @@ export default function Display(props){
         const length = array.length
         let sortedScores = array.sort((a, b) => a - b)
         let index = ((length + 1) / 2)
-        // let sum
+        let sum
 
         if (length % 2 === 1){
             return sortedScores[index]
@@ -118,7 +105,7 @@ export default function Display(props){
         <View>
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */ 
                 <View>
-                    <Text style={styles.dataText}>Box Office Mean: ${boxOfficeMean()} </Text>
+                    <Text style={styles.dataText}>Box Office Mean: ${boxOfficeMean().toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>
                     <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation()} </Text>
                     <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore()}% </Text>
                 </View>
