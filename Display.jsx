@@ -1,7 +1,6 @@
 /* Display will need to calculate for Mean, Standard Deviation, and Rotten Tomatoes score */
 
 import React, {useState, useEffect} from 'react'
-import 'Intl'
 import {StyleSheet, View, Text, Alert} from 'react-native'
 
 const styles = StyleSheet.create({
@@ -16,13 +15,9 @@ const styles = StyleSheet.create({
     }
 })
 
-// const formatter = new Intl.NumberFormat('en-US',
-// { style: 'currency', currency: 'USD' }
-// ).format(mean);
-
 export default function Display(props){
     const [totalMean, setTotalMean] = useState(0) /* save totalMean since two functions are using this for formulas? */
-    const [movieMean, setMovieMean] = useState([])
+    // const [movieMean, setMovieMean] = useState([])
 
 
     /*  Iterate through the array and access the "Box Office" key. Make this a number and remove any non-numeric characters
@@ -39,15 +34,14 @@ export default function Display(props){
         let mean = boxOfficeValues.reduce((acc, curr) => {
             return ((acc + curr) / length)
         })
-        
-        console.log("I'm mean:", new Intl.NumberFormat('en-US',
-        { style: 'currency', currency: 'USD' }
-        ).format(mean))
-        // setTotalMean(mean.toFixed(2))
-        return mean.toLocaleString(('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        }))
+        // let finalMean = mean.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        // setTotalMeanInState(finalMean)
+        mean = mean.toFixed(2)
+        return mean.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    const setMean = () => {
+        setTotalMean(boxOfficeMean())
     }
 
     // useEffect(() => {
@@ -69,10 +63,7 @@ export default function Display(props){
             result += Math.pow((stringToNum - totalMean), 2)
             final = Math.sqrt(result / length ).toFixed(2)
         })
-        return final.toLocaleString(('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        }))
+        return final.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
     /* Access the Ratings Key, then at Value key forEach object in array. Get the number, slice before %, convert to num from string, and store in array */
@@ -100,10 +91,10 @@ export default function Display(props){
         const length = array.length
         let sortedScores = array.sort((a, b) => a - b)
         let index = ((length + 1) / 2)
-        let sum
+        let sum = 0
 
         if (length % 2 === 1){
-            sum = sortedScores[index]
+            return sortedScores[index]
         } else if (length % 2 === 0){
             let firstIndex = Math.floor(index)
             let secondIndex = Math.ceil(index)
@@ -124,18 +115,16 @@ export default function Display(props){
     )}
 
     return(
-        <>
         <View>
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */ 
                 <View>
-                    <Text style={styles.dataText}>Box Office Mean: { boxOfficeMean()} </Text>
-                    <Text style={styles.dataText}>Box Office Standard Deviation: ${/* boxOfficeStandardDeviation() */} </Text>
-                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {/*medianRTScore() */}% </Text>
+                    <Text style={styles.dataText}>Box Office Mean: ${boxOfficeMean()} </Text>
+                    <Text style={styles.dataText}>Box Office Standard Deviation: ${boxOfficeStandardDeviation()} </Text>
+                    <Text style={styles.dataText}>Median Rotten Tomatoes Score: {medianRTScore()}% </Text>
                 </View>
             :
             errorAlert() /* and if the user navigates here without one or more saved movies, receives error message */
             }
         </View>
-        </>
     )
 }
