@@ -35,7 +35,7 @@ export default function Display(props){
             return ((acc + curr) / length)
         })
         // let finalMean = mean.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        // setTotalMeanInState(finalMean)
+        // setMean(finalMean)
         mean = mean.toFixed(2)
         return mean.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
@@ -44,9 +44,9 @@ export default function Display(props){
         setTotalMean(boxOfficeMean())
     }
 
-    // useEffect(() => {
-    //     boxOfficeMean
-    // }, [movieMean])
+    useEffect(() => {
+        setMean
+    }, [])
 
     /* 1. Work out the Mean (the simple average of the numbers)
     2. Then for each number: subtract the Mean and square the result
@@ -91,16 +91,16 @@ export default function Display(props){
         const length = array.length
         let sortedScores = array.sort((a, b) => a - b)
         let index = ((length + 1) / 2)
-        let sum = 0
+        // let sum
 
         if (length % 2 === 1){
             return sortedScores[index]
-        } else if (length % 2 === 0){
-            let firstIndex = Math.floor(index)
+        } else {
+            let firstIndex = Math.floor(index)            
             let secondIndex = Math.ceil(index)
-            sum = (((sortedScores[firstIndex]) + sortedScores[secondIndex]) / 2)
+            sum = sortedScores[firstIndex - 1] + sortedScores[secondIndex - 1]
+            return sum / length
         }
-        return sum
     }
 
 
