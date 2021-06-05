@@ -5,6 +5,7 @@ import {StyleSheet, View, Text, Alert} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: "center",
     },
     dataText: {
@@ -102,7 +103,7 @@ export default function Display(props){
     )}
 
     return(
-        <View>
+        <View style={styles.container}>
             {props.moviesInDisplay.length > 1 ? /* has the user saved multiple movies? */ 
                 <View>
                     <Text style={styles.dataText}>Box Office Mean: ${boxOfficeMean().toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </Text>

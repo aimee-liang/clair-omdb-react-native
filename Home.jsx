@@ -34,6 +34,19 @@ export default function Home(props){
     /* handles setting state of doneFetching */
     const finishedFetching = () => {
         setDoneFetching(!doneFetching)
+        helperFn()
+    }
+
+    const helperFn = () => {
+        if (doneFetching === true){
+
+            return true
+        } 
+        if (!doneFetching === false ){ /* if user has not added the movie, but is done searching for it. Both values will turn true */
+
+            return false
+        }
+        return
     }
 
     /* error message in event of user error */
