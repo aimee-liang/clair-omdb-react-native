@@ -42,6 +42,7 @@ export default function Home(props){
         if (movieInResult.hasOwnProperty("Error")){
             setHasErrors(!hasErrors)
         }
+        return
     }
 
     /* error message in event of user error */
