@@ -16,6 +16,7 @@ export default function Home(props){
 
     const [movieInResult, setMovieInResult] = useState([]) /* this saves the movie in Result after fetching */
     const [doneFetching, setDoneFetching] = useState(false) /* flag variable - if done fetching, will be set to the opposite value of initial state */
+    const [hasErrors, setHasErrors] = useState(false) /* flag variable set to boolean value */
     const movieLink = 'http://www.omdbapi.com/?apikey=29144b52&t=' /* link to API with key to later concat */
 
     const editMovieTitle = (movieTitle) => {
