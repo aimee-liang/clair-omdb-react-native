@@ -38,6 +38,12 @@ export default function Home(props){
         helperFn() /* to do: clean up */
     }
 
+    const updateIfErrors = () => {
+        if (movieInResult.hasOwnProperty("Error")){
+            setHasErrors(!hasErrors)
+        }
+    }
+
     /* error message in event of user error */
     const alertMessage = () => {
         return Alert.alert(
